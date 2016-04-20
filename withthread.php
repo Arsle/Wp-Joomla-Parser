@@ -7,11 +7,13 @@ class th extends Thread {
    
     public function __construct($i) {
         $this->i = $i;
+		
     }
-  
+	
     public function run() {
        
-       
+       $yazjoom=fopen("joom.txt","a+");
+	   $yazjwp=fopen("wp.txt","a+");
         $curl = curl_init();
         curl_setopt($curl,CURLOPT_RETURNTRANSFER,true);
         curl_setopt($curl,CURLOPT_URL,$this->i);
@@ -27,14 +29,18 @@ class th extends Thread {
 		if(strstr($tur[1],"WordPress"))
 		{
 			echo "$this->i-->Wordpress\n";
+			fwrite ($yazwp,"$this->i-->Wordpress\n");
 		}
 		else if (strstr($tur[1],"Joomla"))
 		{
 			echo "$this->i-->Joomla\n";
+			fwrite ($yazjoom,"$this->i-->Joomla\n");
+			
 		}
         
     }
 }
+
 print "|-----------WordPress Joomla Parser 2.0----------------|\n";
 print "|      _             _                    _            |\n";
 print "|     | |           (_)                  (_)           |\n";
@@ -72,10 +78,12 @@ foreach($gorevler as $gorev)
  
 } 
 
+
  
 $pool->shutdown();
  
 echo "Harcanan Sure: ".(time()-$sure1);
+fclose($yazsonuc);
 }
 else
 {

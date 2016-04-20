@@ -12,8 +12,8 @@ class th extends Thread {
 	
     public function run() {
        
-       $yazjoom=fopen("joom.txt","a+");
-	   $yazjwp=fopen("wp.txt","a+");
+        $yazjoom=fopen("joom.txt","a+");
+	$yazwp=fopen("wp.txt","a+");
         $curl = curl_init();
         curl_setopt($curl,CURLOPT_RETURNTRANSFER,true);
         curl_setopt($curl,CURLOPT_URL,$this->i);
